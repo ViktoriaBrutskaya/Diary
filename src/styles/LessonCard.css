@@ -1,0 +1,121 @@
+/* Общий контейнер */
+.lesson-card-container {
+    display: flex;
+    align-items: stretch;
+    width: 90%; 
+    max-width: 1000px;
+    margin-bottom: 40px;
+}
+
+/* --- МОБИЛЬНАЯ ВЕРСИЯ --- */
+@media (max-width: 768px) {
+
+    .lesson-card-container {
+        flex-direction: column;
+        align-items: center;
+        align-self: center;
+        border: 2px solid; /* Цвет прокинем инлайном */
+        border-radius: 40px;
+        padding: 30px 20px 80px 20px; /* Отступ снизу под кнопку */
+        background-color: white;
+        position: relative;
+        box-sizing: border-box;
+
+    }
+
+    .lesson-mobile-header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 15px;
+    }
+
+    /* Иконка (уже в кружочке, просто задаем размер) */
+    .lesson-mobile-icon {
+        width: 80px;
+        height: 80px;
+        object-fit: contain;
+    }
+
+    /* Плашка с названием модуля */
+    .lesson-mobile-badge {
+        padding: 8px 15px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 14px;
+        text-align: center;
+        max-width: 250px;
+        line-height: 1.2;
+    }
+
+    .lesson-mobile-title {
+        font-size: 28px; /* Уменьшил с 38px */
+        font-weight: 800;
+        margin: 10px 0 20px 0;
+        color: #333;
+    }
+
+    .lesson-mobile-info {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        font-size: 18px; /* Гармоничный размер */
+        font-weight: 600;
+        text-align: left;
+        padding-left: 10px;
+    }
+
+    .lesson-mobile-btn {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        background-color: #1D5469;
+        color: white;
+        border: none;
+        border-radius: 40px 0 40px 0;
+        width: 110px;
+        height: 90px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        font-weight: bold;
+    }
+}
+
+
+@media (min-width: 769px) {
+    .right-plate {
+        flex-grow: 1;
+        height: calc(100% - 50px);
+        margin-top: 25px;
+        margin-bottom: 25px;
+        border-radius: 0 40px 40px 0;
+        padding: 20px 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    .desktop-btn {
+        position: absolute;
+        right: 30px;
+        bottom: 20px;
+        background-color: #1D5469;
+        color: white;
+        border: none;
+        border-radius: 30px; 
+        width: 80px;
+        height: 80px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+}

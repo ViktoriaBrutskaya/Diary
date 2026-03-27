@@ -1,24 +1,25 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
+import Chat from './pages/Chat/Chat';
+import Auth from './pages/Auth/Auth';
+import Cabinet from './pages/Cabinet/Cabinet';
+import Modules from './pages/Modules/Modules';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Routes>
+        {/* По умолчанию кидаем на дашборд */}
+        <Route path="/" element={<Navigate to="/auth" />} />
+        
+        <Route path="/auth" element={<Auth />} />
+        <Route path="/chat" element={<Chat />} />
+        <Route path='/cabinet' element={<Cabinet/>}/>
+        <Route path='/modules' element={<Modules/>}/>
+        
+      </Routes>
+    </Router>
   );
 }
 

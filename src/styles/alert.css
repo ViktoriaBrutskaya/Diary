@@ -1,0 +1,40 @@
+.hw-alert-container {
+    border: 3px solid var(--color-red);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    padding: 15px 25px;
+    gap: 20px;
+    max-width: 400px;
+    margin-left: auto; 
+    box-sizing: border-box;
+}
+
+.hw-alert-icon {
+    color: var(--color-red);
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.hw-alert-text {
+    color: var(--color-red);
+    font-size: 18px;
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+
+@media (max-width: 768px) {
+    .hw-alert-container {
+        margin-left: auto;
+        margin-right: auto; 
+        padding: 10px 15px;
+        gap: 15px;
+        max-width: 90%; 
+    }
+
+    .hw-alert-text {
+        font-size: 20px;
+        text-align: left;
+    }
+}
