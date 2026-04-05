@@ -1,10 +1,17 @@
-import React, {useState, useEffect} from 'react';
-import Avatar from './Avatar'; 
+import React, { useState, useEffect } from 'react';
+import Avatar from './Avatar';
+import '../styles/ChatHeader.css'; 
+import { useAuth } from '../context/AuthContext';
 
-
-const ChatHeader = ({ userName = "Имя Фамилия", role="Тьютор", onMenuClick }) => {
+const ChatHeader = ({ 
+  userName = "Имя Фамилия", 
+  role = "Тьютор", 
+  group = "Вт 16:00 Мл 2 год", 
+  onMenuClick 
+}) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
-  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { user, isTutor } = useAuth();
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -12,79 +19,57 @@ const ChatHeader = ({ userName = "Имя Фамилия", role="Тьютор", o
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const headerStyle = {
-    backgroundColor: "var(--color-blue)", 
-    height: "70px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "space-between",
-    padding: "0 40px",
-    boxSizing: "border-box",
-    width: "100%",
-    flexShrink: 0
+  const toggleModal = () => {
+    if (isTutor) setIsModalOpen(!isModalOpen);
   };
 
-  const userBlockStyle = {
-    display: "flex",
-    alignItems: "center",
-    gap: "20px"
-  };
+  const ProfileModal = () => (
+    <div className="profile-modal-overlay" onClick={toggleModal}>
+      <div className="profile-modal-content" onClick={(e) => e.stopPropagation()}>
+        <div className="profile-modal-close" onClick={toggleModal}>X</div>
+        
+        <Avatar size="150px" />
+        
+        <div className="profile-modal-info">
+          <div className="profile-modal-name">{userName}</div>
+          <div className="profile-modal-group">{group}</div>
+        </div>
 
-  const nameStyle = {
-    color: "white",
-    fontSize: "30px",
-    fontWeight: "500",
-    lineHeight: "0.9",
-  };
-
-  const roleStyle = {
-    color: "white",
-    fontSize: "14px",
-    fontWeight: "300",
-  };
-
-  const flexBlock = {
-    display: "flex",
-    flexDirection: "column", 
-    justifyContent: "center", 
-    gap: "0px" 
-  };
-
-  const burgerStyle = {
-    cursor: "pointer",
-    display: isMobile ? "flex" : "none", 
-    flexDirection: "column",
-    gap: "5px"
-  };
-
-  const lineStyle = {
-    width: "25px",
-    height: "3px",
-    backgroundColor: "white",
-    borderRadius: "2px"
-  };
+        <button className="kiberon-btn" onClick={() => alert('Начисляем...')}>
+          + Начислить кибероны
+        </button>
+      </div>
+    </div>
+  );
 
   return (
-    <header style={headerStyle}>
-      <div style={userBlockStyle}>
-        
-        <Avatar size="60px" /> 
-        <div style={flexBlock}>
-            <span style={nameStyle}>{userName}</span>
-            <span style={roleStyle}>{role}</span>
+    <>
+      <header className="chat-header-container">
+        <div className="user-block-style">
+          <div 
+            className={isTutor ? "avatar-clickable" : ""} 
+            onClick={toggleModal}
+          >
+            <Avatar size="60px" />
+          </div>
+          
+          <div className="flex-block-style">
+            <span className="name-style">{userName}</span>
+            <span className="role-style">{role}</span>
+          </div>
         </div>
-        
-      </div>
 
-      {/* Бургер-меню> */}
-      <div style={burgerStyle} onClick={onMenuClick}>
-        <div style={lineStyle}></div>
-        <div style={lineStyle}></div>
-        <div style={lineStyle}></div>
-      </div>
-     
-    </header>
+        <div className="burger-style" onClick={onMenuClick}>
+          <div className="line-style"></div>
+          <div className="line-style"></div>
+          <div className="line-style"></div>
+        </div>
+      </header>
+
+      {isModalOpen && <ProfileModal />}
+    </>
   );
 };
+
 
 export default ChatHeader;

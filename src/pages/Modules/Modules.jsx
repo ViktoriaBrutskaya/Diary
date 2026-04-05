@@ -4,6 +4,9 @@ import YearSection from './YearSection';
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
 
+import ml1_1 from '../../images/ml1_1.svg'
+import ml1_2 from '../../images/ml1_2.svg'
+import ml1_3 from '../../images/ml1_3.svg'
 
 
 const Modules = () => {
@@ -50,22 +53,22 @@ const Modules = () => {
   const mockModules = [
     { 
         title: "Вводный модуль. Креативный инжиниринг и магия ИИ", 
-        desc: "Первые уроки с элементами визуального кодинга и ИИ для вовлечения ребенка...", 
-        icon: "https://cdn-icons-png.flaticon.com/512/3062/3062634.png", 
-        lessonsCount: 6,
+        desc: "Первые уроки с элементами визуального кодинга и ИИ для вовлечения ребенка", 
+        icon: ml1_1, 
+        lessonsCount: 4,
         isLocked: false 
     },
     { 
-        title: "Основы Python", 
-        desc: "Изучаем синтаксис самого популярного языка программирования в мире.", 
-        icon: "https://cdn-icons-png.flaticon.com/512/5968/5968350.png",
-        lessonsCount: 8,
+        title: "Scrath JR", 
+        desc: "Первые шаги в программировании для детей. Учим и понимаем команды без кода", 
+        icon: ml1_2,
+        lessonsCount: 5,
         isLocked: true 
     },
     { 
-        title: "Разработка игр в Unity", 
-        desc: "Создаем свой первый 3D мир и настраиваем физику персонажей.", 
-        icon: "https://cdn-icons-png.flaticon.com/512/5969/5969246.png",
+        title: "Логика и алгоритмы через Code Monkey", 
+        desc: "Изучим основы алгоритмики и логики, научимся креативно подходить к  решению задач разной сложности", 
+        icon: ml1_3,
         lessonsCount: 12,
         isLocked: true 
     },

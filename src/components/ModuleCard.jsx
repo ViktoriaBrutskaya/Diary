@@ -1,6 +1,12 @@
 import React from 'react';
 
-const ModuleCard = ({ color = "var(--color-yellow)", icon, title="", desc="" }) => {
+const ModuleCard = ({ 
+  color = "var(--color-yellow)", 
+  icon, 
+  title = "", 
+  desc = "", 
+  isCompleted = false 
+}) => {
   
   const moduleStyle = {
     width: "250px",
@@ -9,10 +15,27 @@ const ModuleCard = ({ color = "var(--color-yellow)", icon, title="", desc="" }) 
     flexDirection: "column",
     alignItems: "center",
     textAlign: "center",
-   
+    height: "320px",
     borderRadius: "30px",
-    border: `2px solid ${color}`,
-    boxSizing: "border-box"
+    border: isCompleted ? "2px solid rgba(0,0,0,0.1)" : `2px solid ${color}`,
+    boxSizing: "border-box",
+    position: "relative",
+    backgroundColor: "#fff",
+    transition: "all 0.3s ease",
+    boxShadow: isCompleted ? "inset 0 0 10px rgba(0,0,0,0.05)" : "none"
+  };
+
+  const overlayStyle = {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    width: "100%",
+    height: "100%",
+    backgroundColor: "rgba(255, 255, 255, 0.6)",
+    borderRadius: "28px",
+    zIndex: 2,
+    display: isCompleted ? "block" : "none",
+    pointerEvents: "none"
   };
 
   const iconContainer = {
@@ -26,11 +49,11 @@ const ModuleCard = ({ color = "var(--color-yellow)", icon, title="", desc="" }) 
     flexShrink: 0
   };
 
-
   const iconImgStyle = {
     width: "100%",
     height: "100%",
-    objectFit: "contain"
+    objectFit: "contain",
+    opacity: isCompleted ? 0.5 : 1
   };
 
   const moduleNameStyle = { 
@@ -39,8 +62,8 @@ const ModuleCard = ({ color = "var(--color-yellow)", icon, title="", desc="" }) 
     fontWeight: "800",
     borderRadius: "12px",
     marginBottom: "15px",
-    backgroundColor: color,
-    color: "var(--color-black)",
+    backgroundColor: isCompleted ? "#e0e0e0" : color,
+    color: isCompleted ? "rgba(0,0,0,0.4)" : "var(--color-black)",
     lineHeight: "1.2",
     minHeight: "40px",
     display: "flex",
@@ -52,7 +75,7 @@ const ModuleCard = ({ color = "var(--color-yellow)", icon, title="", desc="" }) 
 
   const moduleDescStyle = {
     fontSize: "14px",
-    color: "var(--color-black)",
+    color: isCompleted ? "rgba(0,0,0,0.4)" : "var(--color-black)",
     margin: 0,
     lineHeight: "1.4",
     fontWeight: "500"
@@ -60,6 +83,8 @@ const ModuleCard = ({ color = "var(--color-yellow)", icon, title="", desc="" }) 
 
   return (  
     <div style={moduleStyle}>
+      <div style={overlayStyle}></div>
+      
       <div style={iconContainer}>
         <img src={icon} alt="icon" style={iconImgStyle} />
       </div>

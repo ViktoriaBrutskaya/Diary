@@ -1,0 +1,174 @@
+.chat-header-container {
+    background-color: var(--color-blue);
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px; 
+    box-sizing: border-box;
+    width: 100%;
+    flex-shrink: 0;
+}
+
+/* Блок пользователя (аватар + текст) */
+.user-block-style {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 0;
+}
+
+/* Обертка текста (имя + роль) */
+.flex-block-style {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 0px;
+    min-width: 0;
+}
+
+.name-style {
+    color: white;
+    font-size: 30px; 
+    font-weight: 500;
+    line-height: 0.9;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.role-style {
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+/* Иконка аватара*/
+.avatar-clickable {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    flex-shrink: 0;
+}
+
+.avatar-clickable:hover {
+    transform: scale(1.05);
+}
+
+/* Бургер-меню */
+.burger-style {
+    cursor: pointer;
+    display: none; 
+    flex-direction: column;
+    gap: 5px;
+    flex-shrink: 0;
+}
+
+.line-style {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+
+
+.profile-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10000;
+    animation: fadeIn 0.2s ease-out;
+}
+
+.profile-modal-content {
+    background: white;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 40px;
+    padding: 50px 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+}
+
+.profile-modal-close {
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #333;
+    font-weight: 300;
+}
+
+.profile-modal-info {
+    margin: 25px 0 35px 0;
+}
+
+.profile-modal-name {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    color: #000;
+}
+
+.profile-modal-group {
+    font-size: 20px;
+    color: #333;
+    font-weight: 400;
+}
+
+
+.kiberon-btn {
+    background-color: var(--color-blue);
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 18px 30px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.kiberon-btn:hover {
+    background-color:  var(--color-blue);
+}
+
+
+
+@media (max-width: 768px) {
+    .chat-header-container {
+        padding: 0 15px;
+    }
+
+    .name-style {
+        font-size: 20px; 
+    }
+
+    .burger-style {
+        display: flex;
+    }
+}
+
+
+@media (max-width: 400px) {
+    .flex-block-style {
+        max-width: 150px;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}

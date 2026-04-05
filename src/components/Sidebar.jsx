@@ -1,11 +1,13 @@
 import React from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext'; 
 import logo from '../images/logo.jpg';
 import Button from './Button';  
 
 const Sidebar = ({ isOpen, onClose }) => {
-const navigate = useNavigate();
+  const navigate = useNavigate();
   const location = useLocation(); 
+  const { isTutor, logout } = useAuth(); 
 
   const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 600);
 
@@ -15,14 +17,26 @@ const navigate = useNavigate();
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const menu = [
-    { name: "Личный кабинет", path: "/cabinet" },
-    { name: "Модули", path: "/modules" },
-    { name: "Кибершоп", path: "/shop" },
-    { name: "Чат с тьютором", path: "/chat" }
-  ];
 
-  
+  const menu = isTutor 
+    ? [
+        { name: "Личный кабинет", path: "/cabinet" },
+        { name: "Модули", path: "/modules" },
+        { name: "Группы", path: "/groups" },
+        { name: "Чаты", path: "/chat" }     
+      ]
+    : [
+        { name: "Личный кабинет", path: "/cabinet" },
+        { name: "Модули", path: "/modules" },
+        { name: "Кибершоп", path: "/shop" }, 
+        { name: "Чат с тьютором", path: "/chat" }
+      ];
+
+  const handleLogout = () => {
+    logout(); 
+    navigate('/auth'); 
+  };
+
   const sidebarStyle = {
     backgroundColor: "var(--color-light-blue)",
     width: isMobile ? "100vw" : "250px",
@@ -31,12 +45,10 @@ const navigate = useNavigate();
     flexDirection: "column",
     padding: "30px 15px",
     boxSizing: "border-box",
-
     position: isMobile ? "fixed" : "relative",
     right: isMobile ? (isOpen ? 0 : "-100%") : 0,
     zIndex: 1000,
     transition: "right 0.3s ease",
-    
   };
 
   const closeBtnStyle = {
@@ -50,9 +62,10 @@ const navigate = useNavigate();
   };
 
   const sideLogoStyle = { 
-    width: "100%",
+    width: isMobile ? "60%" : "80%",
     marginBottom: "50px",
-    objectFit: "contain"
+    objectFit: "contain",
+    alignSelf: "center"
   };
 
   const navMenuStyle = { 
@@ -61,7 +74,6 @@ const navigate = useNavigate();
     gap: "15px"
   };
 
- 
   const logoutWrapperStyle = {
     marginTop: "auto",
     width: "100%",
@@ -72,31 +84,32 @@ const navigate = useNavigate();
 
   return (
     <aside style={sidebarStyle}>
-
       <div style={closeBtnStyle} onClick={onClose}>✕</div>
 
       <img src={logo} alt="KiberOne" style={sideLogoStyle} />
       
       <nav style={navMenuStyle}>
         {menu.map(item => (
-          
           <Button 
             key={item.path} 
             text={item.name} 
+
             color={location.pathname === item.path ? "var(--color-blue)" : "var(--color-yellow)"}
             width="100%" 
-            onClick={() => navigate(item.path)} 
-            />
+            onClick={() => {
+              navigate(item.path);
+              if (isMobile) onClose(); 
+            }} 
+          />
         ))}
       </nav>
 
-      {/* Кнопка выхода внизу */}
       <div style={logoutWrapperStyle}>
         <Button 
           text="Выйти" 
           color="var(--color-yellow)" 
           width="120px" 
-          onClick={() => navigate('/auth')}
+          onClick={handleLogout} 
         />
       </div>
     </aside>

@@ -5,7 +5,9 @@ const InputField = ({
   type = "text", 
   placeholder, 
   width = "200px", 
-  borderColor = "var(--color-blue)" 
+  borderColor = "var(--color-blue)",
+  value,     
+  onChange    
 }) => {
   const containerStyle = {
     width: width,
@@ -38,6 +40,8 @@ const InputField = ({
         type={type} 
         style={inputStyle} 
         placeholder={placeholder} 
+        value={value}     
+        onChange={onChange} 
       />
     </div>
   );

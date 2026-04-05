@@ -1,0 +1,89 @@
+.header {
+    background-color: var(--color-blue);
+    height: 80px;
+    width: 100%;
+    
+    /* Фиксация без сюрпризов */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px;
+    box-sizing: border-box;
+    
+    /* Плавное скрытие */
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Класс скрытия */
+.header--hidden {
+    transform: translateY(-100%);
+}
+
+.user-block {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0; /* Аватарка и имя не будут сжиматься в кашу */
+}
+
+.user-name {
+    color: white;
+    font-size: 26px;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.right-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0; /* Кибероны и бургер не сжимаются */
+}
+
+/* Бургер-меню */
+.burger-menu {
+    cursor: pointer;
+    display: none; 
+    flex-direction: column;
+    gap: 5px;
+    padding: 10px;
+}
+
+.burger-line {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+/* --- АДАПТИВ (ЧЕТКИЕ ПРАВИЛА) --- */
+
+@media (max-width: 1024px) {
+    .user-name {
+        font-size: 20px; /* Планшетный размер */
+    }
+}
+
+@media (max-width: 600px) {
+    .header {
+        padding: 0 10px; /* Минимум отступов по бокам */
+    }
+
+    .user-name {
+        display: none !important; /* Гарантированно убираем имя */
+    }
+
+    .burger-menu {
+        display: flex; /* Показываем бургер */
+    }
+
+    .right-section {
+        gap: 8px; /* Чуть плотнее на мобилке */
+    }
+}

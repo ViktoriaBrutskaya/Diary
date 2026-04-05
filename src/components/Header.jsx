@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
+import { useAuth } from '../context/AuthContext';
 import Avatar from './Avatar'; 
 import Kiberon from './Kiberon'; 
 
-const Header = ({ userName = "Имя Фамилия", onMenuClick }) => {
+const Header = ({ onMenuClick }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+  const { user, isTutor } = useAuth(); 
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 600);
@@ -27,7 +29,7 @@ const Header = ({ userName = "Имя Фамилия", onMenuClick }) => {
   const userBlockStyle = {
     display: "flex",
     alignItems: "center",
-    gap: isMobile ? "0" : "20px" 
+    gap: isMobile ? "10px" : "20px" 
   };
 
   const nameStyle = {
@@ -61,15 +63,18 @@ const Header = ({ userName = "Имя Фамилия", onMenuClick }) => {
   return (
     <header style={headerStyle}>
       <div style={userBlockStyle}>
-       
         <Avatar size={isMobile ? "60px" : "70px"} /> 
         
-       
-        {!isMobile && <span style={nameStyle}>{userName}</span>}
+        {/* Отображаем имя из контекста. На мобилках тоже можно оставить, если влезет, 
+            либо оставить твое условие !isMobile */}
+        {!isMobile && <span style={nameStyle}>{user?.name || "Гость"}</span>}
+        {isMobile && <span style={nameStyle}>{user?.name.split(' ')[0]}</span>} 
+        {/* На мобилке вывел только имя (без фамилии), чтобы не ломать верстку */}
       </div>
 
       <div style={rightSectionStyle}>
-        <Kiberon amount={450} />
+        {/* Если НЕ тьютор — показываем кибероны */}
+        {!isTutor && <Kiberon amount={450} />}
 
         <div style={burgerStyle} onClick={onMenuClick}>
           <div style={lineStyle}></div>
