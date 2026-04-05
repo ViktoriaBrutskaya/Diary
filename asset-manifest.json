@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Diary/static/css/main.abd18f91.css",
-    "main.js": "/Diary/static/js/main.a5ea5a2d.js",
+    "main.js": "/Diary/static/js/main.b75da466.js",
     "static/js/453.d824f66c.chunk.js": "/Diary/static/js/453.d824f66c.chunk.js",
     "static/media/bear.png": "/Diary/static/media/bear.1c8e32c4e87c07e95639.png",
     "static/media/PFBeauSansPro-Light.ttf": "/Diary/static/media/PFBeauSansPro-Light.201d0f82849c4db48aef.ttf",
@@ -27,11 +27,11 @@
     "index.html": "/Diary/index.html",
     "static/media/kiberon.svg": "/Diary/static/media/kiberon.59a9a69a3c23bd0eaf50b6f3e3a06fae.svg",
     "main.abd18f91.css.map": "/Diary/static/css/main.abd18f91.css.map",
-    "main.a5ea5a2d.js.map": "/Diary/static/js/main.a5ea5a2d.js.map",
+    "main.b75da466.js.map": "/Diary/static/js/main.b75da466.js.map",
     "453.d824f66c.chunk.js.map": "/Diary/static/js/453.d824f66c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.abd18f91.css",
-    "static/js/main.a5ea5a2d.js"
+    "static/js/main.b75da466.js"
   ]
 }
