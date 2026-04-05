@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/ViktoriaBrutskaya/Diary/static/css/main.fe5ca133.css",
-    "main.js": "/ViktoriaBrutskaya/Diary/static/js/main.16c8bee4.js",
+    "main.js": "/ViktoriaBrutskaya/Diary/static/js/main.0923720a.js",
     "static/js/453.d824f66c.chunk.js": "/ViktoriaBrutskaya/Diary/static/js/453.d824f66c.chunk.js",
     "static/media/bear.png": "/ViktoriaBrutskaya/Diary/static/media/bear.1c8e32c4e87c07e95639.png",
     "static/media/PFBeauSansPro-Light.ttf": "/ViktoriaBrutskaya/Diary/static/media/PFBeauSansPro-Light.201d0f82849c4db48aef.ttf",
@@ -27,11 +27,11 @@
     "index.html": "/ViktoriaBrutskaya/Diary/index.html",
     "static/media/kiberon.svg": "/ViktoriaBrutskaya/Diary/static/media/kiberon.59a9a69a3c23bd0eaf50b6f3e3a06fae.svg",
     "main.fe5ca133.css.map": "/ViktoriaBrutskaya/Diary/static/css/main.fe5ca133.css.map",
-    "main.16c8bee4.js.map": "/ViktoriaBrutskaya/Diary/static/js/main.16c8bee4.js.map",
+    "main.0923720a.js.map": "/ViktoriaBrutskaya/Diary/static/js/main.0923720a.js.map",
     "453.d824f66c.chunk.js.map": "/ViktoriaBrutskaya/Diary/static/js/453.d824f66c.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.fe5ca133.css",
-    "static/js/main.16c8bee4.js"
+    "static/js/main.0923720a.js"
   ]
 }
