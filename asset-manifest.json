@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Diary/static/css/main.abd18f91.css",
-    "main.js": "/Diary/static/js/main.b75da466.js",
+    "main.css": "/Diary/static/css/main.27581757.css",
+    "main.js": "/Diary/static/js/main.75f8f614.js",
     "static/js/453.d824f66c.chunk.js": "/Diary/static/js/453.d824f66c.chunk.js",
     "static/media/bear.png": "/Diary/static/media/bear.1c8e32c4e87c07e95639.png",
     "static/media/PFBeauSansPro-Light.ttf": "/Diary/static/media/PFBeauSansPro-Light.201d0f82849c4db48aef.ttf",
@@ -14,8 +14,10 @@
     "static/media/PFBeauSansPro-BoldItalic.ttf": "/Diary/static/media/PFBeauSansPro-BoldItalic.eddea2955191a5a32433.ttf",
     "static/media/PFBeauSansPro-Black.ttf": "/Diary/static/media/PFBeauSansPro-Black.4a2759e92c90fc7aa994.ttf",
     "static/media/PFBeauSansPro-BlackItal.ttf": "/Diary/static/media/PFBeauSansPro-BlackItal.c215f44d1d86c12d34b6.ttf",
+    "static/media/pr1.svg": "/Diary/static/media/pr1.42132af4a3e64946606c1dd34bbd3c10.svg",
     "static/media/auth1.png": "/Diary/static/media/auth1.1d2b258893a2fb1d2474.png",
     "static/media/logo.jpg": "/Diary/static/media/logo.dc1997ad4b61c3685808.jpg",
+    "static/media/calendar.svg": "/Diary/static/media/calendar.9332dae5d1c39b88b8fd91021234fc58.svg",
     "static/media/send.svg": "/Diary/static/media/send.16094484c2522df03d52a9d42cdba353.svg",
     "static/media/lock.svg": "/Diary/static/media/lock.df7fa11ace4fbaf994e872f993dbde7c.svg",
     "static/media/kiberon_paper.png": "/Diary/static/media/kiberon_paper.8a3f8c85f249d2404946.png",
@@ -24,14 +26,16 @@
     "static/media/ml1_2.svg": "/Diary/static/media/ml1_2.e0ed8e64ec51bf523d03ec6842f6e744.svg",
     "static/media/ml1_3.svg": "/Diary/static/media/ml1_3.c2832240865bb3fe14e01b8adad5d72f.svg",
     "static/media/avatar.svg": "/Diary/static/media/avatar.65e333ef1488b4d71b13483b18e695a4.svg",
+    "static/media/wave.svg": "/Diary/static/media/wave.118e81d7b9409f54bacaf0691e898147.svg",
     "index.html": "/Diary/index.html",
     "static/media/kiberon.svg": "/Diary/static/media/kiberon.59a9a69a3c23bd0eaf50b6f3e3a06fae.svg",
-    "main.abd18f91.css.map": "/Diary/static/css/main.abd18f91.css.map",
-    "main.b75da466.js.map": "/Diary/static/js/main.b75da466.js.map",
+    "static/media/k.svg": "/Diary/static/media/k.ca8c08e396fdf1ff238bb977a2700466.svg",
+    "main.27581757.css.map": "/Diary/static/css/main.27581757.css.map",
+    "main.75f8f614.js.map": "/Diary/static/js/main.75f8f614.js.map",
     "453.d824f66c.chunk.js.map": "/Diary/static/js/453.d824f66c.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.abd18f91.css",
-    "static/js/main.b75da466.js"
+    "static/css/main.27581757.css",
+    "static/js/main.75f8f614.js"
   ]
 }
