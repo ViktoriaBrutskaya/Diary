@@ -1,5 +1,5 @@
 .page-wrapper {
-  /* Картинка на весь фон */
+
   background-image: url("../../images/auth1.png");
   background-size: cover;    
   background-position: center; 
@@ -107,7 +107,7 @@
   }
 
   .logo {
-    width: 140px; /* Лого чуть меньше */
+    width: 140px;
     align-self: center;
   }
 

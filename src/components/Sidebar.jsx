@@ -9,10 +9,10 @@ const Sidebar = ({ isOpen, onClose }) => {
   const location = useLocation(); 
   const { isTutor, logout } = useAuth(); 
 
-  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 600);
+  const [isMobile, setIsMobile] = React.useState(window.innerWidth <= 800);
 
   React.useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 600);
+    const handleResize = () => setIsMobile(window.innerWidth <= 800);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -23,7 +23,7 @@ const Sidebar = ({ isOpen, onClose }) => {
         { name: "Личный кабинет", path: "/cabinet" },
         { name: "Модули", path: "/modules" },
         { name: "Группы", path: "/groups" },
-        { name: "Чаты", path: "/chat" }     
+        { name: "Чаты", path: "/chats" }     
       ]
     : [
         { name: "Личный кабинет", path: "/cabinet" },

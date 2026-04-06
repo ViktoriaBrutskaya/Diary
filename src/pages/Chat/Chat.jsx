@@ -11,9 +11,12 @@ const Chat = () => {
 
   const mainWrapper = {
     display: "flex",
-    height: "100vh",
+    height: "100dvh", 
     width: "100vw",
-    overflow: "hidden"
+    overflow: "hidden",
+    position: "fixed", 
+    top: 0,
+    left: 0
   };
 
   const chatArea = {

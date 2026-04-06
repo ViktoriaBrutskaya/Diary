@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Avatar from './Avatar';
 import '../styles/ChatHeader.css'; 
 import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom'; // Импортируем хук навигации
 
 const ChatHeader = ({ 
   userName = "Имя Фамилия", 
@@ -12,6 +13,7 @@ const ChatHeader = ({
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const { user, isTutor } = useAuth();
+  const navigate = useNavigate(); 
 
   useEffect(() => {
     const handleResize = () => setIsMobile(window.innerWidth <= 768);
@@ -26,7 +28,7 @@ const ChatHeader = ({
   const ProfileModal = () => (
     <div className="profile-modal-overlay" onClick={toggleModal}>
       <div className="profile-modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="profile-modal-close" onClick={toggleModal}>X</div>
+        <div className="profile-modal-close" onClick={toggleModal}>✕</div>
         
         <Avatar size="150px" />
         
@@ -46,6 +48,25 @@ const ChatHeader = ({
     <>
       <header className="chat-header-container">
         <div className="user-block-style">
+          
+          
+          {isTutor && (
+            <div 
+              onClick={() => navigate('/chats')} 
+              style={{
+                cursor: 'pointer',
+                marginRight: '15px',
+                fontSize: '24px',
+                color: 'var(--color-white)',
+                fontWeight: 'bold',
+                display: 'flex',
+                alignItems: 'center'
+              }}
+            >
+              ←
+            </div>
+          )}
+
           <div 
             className={isTutor ? "avatar-clickable" : ""} 
             onClick={toggleModal}
@@ -70,6 +91,5 @@ const ChatHeader = ({
     </>
   );
 };
-
 
 export default ChatHeader;

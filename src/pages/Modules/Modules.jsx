@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import ModuleModal from './ModuleModal'; 
 import YearSection from './YearSection';
+import { useAuth } from '../../context/AuthContext';
+import ModuleCard from '../../components/ModuleCard';
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
 
@@ -10,10 +12,13 @@ import ml1_3 from '../../images/ml1_3.svg'
 
 
 const Modules = () => {
+  const { isTutor } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const [openYears, setOpenYears] = useState([1]); 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedModule, setSelectedModule] = useState(null);
+
+    const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
 
   const toggleYear = (year) => {
     setOpenYears(prev => 
@@ -26,7 +31,6 @@ const Modules = () => {
     setIsModalOpen(true);
   };
 
-  // --- Стили ---
   const mainWrapper = {
     display: "flex",
     height: "100vh",
@@ -43,11 +47,19 @@ const Modules = () => {
   };
 
   const scrollContainer = {
-    padding: "40px 60px", 
+    padding: isMobile ? "20px 15px" : "40px 60px", 
     maxWidth: "1400px",
     margin: "0 auto", 
     width: "100%",
     boxSizing: "border-box"
+  };
+
+  const tutorGridStyle = {
+    display: "grid",
+    gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 250px)", 
+    gap: isMobile ? "15px" : "30px",
+    justifyContent: "center",
+    justifyItems: "center"
   };
 
   const mockModules = [
@@ -74,6 +86,8 @@ const Modules = () => {
     },
   ];
 
+  
+
   return (
     <div style={mainWrapper}>
  
@@ -84,9 +98,31 @@ const Modules = () => {
       
         <Header onMenuClick={() => setMenuOpen(true)} />
 
-        
         <div style={scrollContainer}>
-          <YearSection 
+          <h1 style={{ marginBottom: "30px", textAlign: isMobile ? "center" : "left" }}>
+            {isTutor ? "Все доступные модули" : "Программа обучения"}
+          </h1>
+
+          {isTutor ? (
+            
+            <div style={tutorGridStyle}>
+              {mockModules.map((mod, idx) => (
+                <div key={idx} onClick={() => handleModuleClick(mod)} style={{ cursor: "pointer" }}>
+                  <ModuleCard 
+                    title={mod.title} 
+                    desc={mod.desc} 
+                    icon={mod.icon} 
+                    color={mod.color || "var(--color-blue)"} 
+                  />
+                </div>
+              ))}
+            </div>
+          ) : 
+          
+          (
+            
+            <>
+              <YearSection 
             yearTitle="1 год" 
             color="#F9D423" 
             modules={mockModules}
@@ -121,8 +157,11 @@ const Modules = () => {
             onToggle={() => toggleYear(4)}
             onModuleClick={handleModuleClick}
           />
+            </>
+          )}
         </div>
       </div>
+
 
       
       {selectedModule && (

@@ -2,16 +2,18 @@ import React, { useState } from 'react';
 import Sidebar from '../../components/Sidebar';
 import Header from '../../components/Header';
 import GroupBar from './GroupBar';
-import YearSection from '../Modules/YearSection'; 
+import ModuleCard from '../../components/ModuleCard'; 
 import ModuleModal from '../Modules/ModuleModal';
 
 import ml1_1 from '../../images/ml1_1.svg';
 
 const Groups = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [selectedGroup, setSelectedGroup] = useState(null);
+  const [expandedGroupId, setExpandedGroupId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedModule, setSelectedModule] = useState(null);
+
+  const isMobile = window.innerWidth <= 600;
 
   const mockGroups = [
     { id: 1, dayTime: "Пн 16:00", groupName: "Ср 1 год", color: "#F9D423" },
@@ -21,68 +23,86 @@ const Groups = () => {
   ];
 
   const mockModules = [
-    { 
-        title: "Вводный модуль. Креативный инжиниринг и магия ИИ", 
-        desc: "Первые уроки с элементами визуального кодинга и ИИ", 
-        icon: ml1_1, 
-        lessonsCount: 4,
-        isLocked: false 
-    },
-    // ... можно добавить еще
+    { title: "Вводный модуль. Креативный инжиниринг и магия ИИ", desc: "Первые уроки с элементами визуального кодинга и ИИ", icon: ml1_1, lessonsCount: 4 },
+    { title: "Scrath JR", desc: "Первые шаги в программировании", icon: ml1_1, lessonsCount: 5 },
   ];
 
-  // Стили из твоего Modules.jsx
-  const mainWrapper = { display: "flex", height: "100vh", width: "100vw", overflow: "hidden" };
-  const contentArea = { flexGrow: 1, display: "flex", flexDirection: "column", backgroundColor: "white", overflowY: "auto" };
-  const scrollContainer = { padding: "40px 60px", maxWidth: "1400px", margin: "0 auto", width: "100%", boxSizing: "border-box" };
+  const toggleGroup = (id) => {
+    setExpandedGroupId(prev => (prev === id ? null : id));
+  };
+
+  // --- СТИЛИ ДЛЯ АНИМАЦИИ ---
+  
+  const accordionContentStyle = (isOpen) => ({
+    // Скрываем контент через высоту и прозрачность
+    maxHeight: isOpen ? "1500px" : "0px", 
+    opacity: isOpen ? 1 : 0,
+    overflow: "hidden",
+    // Плавный переход для высоты и прозрачности
+    transition: "max-height 0.5s ease-in-out, opacity 0.4s ease-in-out",
+    width: "100%"
+  });
+
+  const gridStyle = {
+    display: "grid",
+    // Если на мобилке 1 в ряд, на десктопе 250px
+    gridTemplateColumns: isMobile ? "1fr" : "repeat(auto-fill, 250px)", 
+    gap: isMobile ? "15px" : "30px",
+    padding: "30px 10px", // Добавили отступов, чтобы карточки не липли к полоске
+    justifyContent: "center",
+    justifyItems: "center"
+  };
+
+  const scrollContainer = { 
+    padding: isMobile ? "20px 15px" : "40px 60px", 
+    maxWidth: "1400px", 
+    margin: "0 auto", 
+    width: "100%", 
+    boxSizing: "border-box" 
+  };
 
   return (
-    <div style={mainWrapper}>
+    <div style={{ display: "flex", height: "100vh", width: "100vw", overflow: "hidden" }}>
       <Sidebar isOpen={menuOpen} onClose={() => setMenuOpen(false)} />
 
-      <div style={contentArea}>
+      <div style={{ flexGrow: 1, display: "flex", flexDirection: "column", backgroundColor: "white", overflowY: "auto" }}>
         <Header onMenuClick={() => setMenuOpen(true)} />
 
         <div style={scrollContainer}>
-          {/* Кнопка Назад, если зашли в группу */}
-          {selectedGroup && (
-            <button 
-              onClick={() => setSelectedGroup(null)}
-              style={{ marginBottom: '20px', cursor: 'pointer', border: 'none', background: 'none', color: 'var(--color-blue)', fontWeight: 'bold' }}
-            >
-              ← Назад к списку групп
-            </button>
-          )}
+          <h1 style={{ marginBottom: '30px' }}>Мои группы</h1>
 
-          <h1 style={{ marginBottom: '30px' }}>
-            {selectedGroup ? `Модули группы: ${selectedGroup.groupName}` : "Мои группы"}
-          </h1>
+          {mockGroups.map(group => {
+            const isOpen = expandedGroupId === group.id;
+            return (
+              <div key={group.id} style={{ marginBottom: "15px" }}>
+                <GroupBar 
+                  dayTime={group.dayTime}
+                  groupName={group.groupName}
+                  color={group.color}
+                  onClick={() => toggleGroup(group.id)}
+                />
 
-          {!selectedGroup ? (
-            // Рендерим список групп как на скрине
-            mockGroups.map(group => (
-              <GroupBar 
-                key={group.id}
-                dayTime={group.dayTime}
-                groupName={group.groupName}
-                color={group.color}
-                onClick={() => setSelectedGroup(group)}
-              />
-            ))
-          ) : (
-            // Рендерим модули выбранной группы
-            <YearSection 
-              yearTitle={selectedGroup.groupName} 
-              color={selectedGroup.color} 
-              modules={mockModules}
-              isOpen={true}
-              onToggle={() => {}}
-              onModuleClick={(mod) => {
-                setSelectedModule(mod);
-                setIsModalOpen(true);
-              }} 
-            />
-          )}
+                {/* Обертка для анимации */}
+                <div style={accordionContentStyle(isOpen)}>
+                  <div style={gridStyle}>
+                    {mockModules.map((module, index) => (
+                      <div key={index} onClick={() => {
+                        setSelectedModule(module);
+                        setIsModalOpen(true);
+                      }} style={{ cursor: "pointer" }}>
+                        <ModuleCard 
+                          color={group.color}
+                          title={module.title}
+                          desc={module.desc}
+                          icon={module.icon}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -94,11 +114,10 @@ const Groups = () => {
           desc={selectedModule.desc}
           icon={selectedModule.icon}
           lessonsCount={selectedModule.lessonsCount}
-          isLocked={selectedModule.isLocked}
         />
       )}
     </div>
   );
 };
 
-export default Groups;
+export default Groups;  

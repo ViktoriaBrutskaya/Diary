@@ -18,7 +18,7 @@ const Alert = () => {
       {isOpen && (
         <div className="hw-modal-overlay" onClick={toggleModal}>
           <div className="hw-modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="hw-modal-close" onClick={toggleModal}>X</div>
+            <div className="hw-modal-close" onClick={toggleModal}>✕</div>
             
             <div className="hw-modal-header">
               <span className="hw-alert-icon" style={{fontSize: '40px'}}>!</span>

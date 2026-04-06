@@ -4,11 +4,11 @@ import Avatar from './Avatar';
 import Kiberon from './Kiberon'; 
 
 const Header = ({ onMenuClick }) => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 800);
   const { user, isTutor } = useAuth(); 
 
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 600);
+    const handleResize = () => setIsMobile(window.innerWidth <= 800);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
